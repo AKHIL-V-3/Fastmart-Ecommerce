@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  {{>adminheaderlinks}}
+
+
+  <style>
+
+    @import url(http://fonts.googleapis.com/css?family=Calibri:400,300,700);
+
+body {
+     background-color:rgb(38, 50, 53);
+    font-family: 'Calibri', sans-serif !important;
+}
+
+.mt-100{
+   margin-top:100px;
+
+}
+
+
+.card {
+    margin-bottom: 30px;
+    border: 0;
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease;
+    letter-spacing: .5px;
+    border-radius: 8px;
+    -webkit-box-shadow: 1px 5px 24px 0 rgba(68,102,242,.05);
+    box-shadow: 1px 5px 24px 0 rgba(68,102,242,.05);
+}
+
+.card .card-header {
+   
+    border-bottom: none;
+    padding: 24px;
+    border-bottom: 1px solid #f6f7fb;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.card-header:first-child {
+    border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+}
+
+
+
+.card .card-body {
+    padding: 30px;
+    background-color: transparent;
+}
+
+
+
+
+  </style>
+
+</head>
+
+<body style="background-color:rgb(38, 50, 53);">
+
+  <!-- Start wrapper-->
+  <div id="wrapper">
+
+    <!--Start sidebar-wrapper-->
+    {{>adminsidebar}}
+    <!--End sidebar-wrapper-->
+
+    <!--Start topbar header-->
+    {{>adminheader}}
+    <!--End topbar header-->
+
+    <div class="clearfix"></div>
+
+    <div class="content-wrapper">
+      <div class="container-fluid">
+
+        <!--Start Dashboard Content-->
+        {{!-- <div class="d-flex justify-content-start">
+          <button class="btn btn-primary mb-3 mr-2" onclick="yearlyReportPDF()"
+            style="background-color: rgb(73, 72, 132);"><i class="fa fa-download"></i> yearly Sales report</button>
+          <button class="btn btn-primary mb-3 mr-2" onclick="monthlyReportPDF()"
+            style="background-color: rgb(73, 72, 132);"><i class="fa fa-download"></i> Monthly Sales report</button>
+          <button class="btn btn-primary mb-3 mr-2" onclick="weeklyReportPDF()"
+            style="background-color: rgb(73, 72, 132);"><i class="fa fa-download"></i> Daily Sales report</button>
+
+        </div> --}}
+
+
+
+
+        <style>
+          select option {
+            background-color: rgb(251, 251, 244) !important;
+            color: rgb(15, 15, 15) !important;
+          }
+        </style>
+
+
+        <div class="d-lg-flex col-4">
+
+
+          <div class="d-flex mb-2">
+
+
+          <select class="form-select form-outline bg-primary text-white ml-lg-5" aria-label="Default select example" name="day" id="day"> 
+             
+             
+             <option >01</option>
+            <option >01</option>
+            <option >02</option>
+            <option >03</option>
+            <option >04</option>
+            <option >05</option>
+            <option >06</option>
+            <option >07</option>
+            <option >08</option>
+            <option >09</option>
+            <option >10</option>
+            <option >11</option>
+            <option >12</option>
+            <option >13</option>
+            <option >14</option>
+            <option >15</option>
+            <option >16</option>
+            <option >17</option>
+            <option >18</option>
+            <option >19</option>
+            <option >20</option>
+            <option >21</option>
+            <option >22</option>
+            <option >23</option>
+            <option >24</option>
+            <option >25</option>
+            <option >26</option>
+            <option >27</option>
+            <option >28</option>
+            <option >29</option>
+            <option >30</option>
+            <option >31</option>
+            
+            
+
+          </select>
+
+          <select name="month" id="month" class="bg-primary text-white ml-lg-2">
+
+             
+             <option>01</option>
+            <option>01</option>    
+            <option>02</option>
+            <option>03</option>
+            <option>04</option>
+            <option>05</option>
+            <option >06</option>
+            <option >07</option>
+            <option >08</option>
+            <option >09</option>
+            <option >10</option>
+            <option >11</option>
+            <option >12</option>
+
+          </select>
+
+
+          <select name="year" id="year" class="bg-primary text-white ml-lg-2"   onchange="myFunction()">
+              
+             <option >2022</option>
+            <option >2022</option>
+             <option >2021</option>
+             <option >2020</option>
+             <option >2019</option>
+             <option >2018</option>
+             <option >2017</option>
+            <option >2016</option>
+            <option >2015</option>
+            <option >2014</option>
+            <option >2013</option>
+            <option >2012</option>  
+         
+          </select>
+
+         
+
+          <form action="" method="" id="form" class="ml-lg-5">
+            <input type="text" id="All" value="All" name="date" hidden>
+            <button type="submit" id="Allsubmit" class="btn btn-primary ml-3">All</button>
+          </form>
+
+           </div>
+
+
+           <form action="" id="form2" class="ml-lg-5" >
+
+            <div class="d-flex">
+
+             <input type="date" id="from" class="form-control mr-3">
+            <input type="date"  id="To" class="form-control">
+
+            <button class="btn btn-primary ml-4" id="customsearch">Search</button>
+            </div>
+            
+           </form>
+          
+
+        </div>
+
+
+
+
+
+
+          {{#if salesReport}}
+        <div class="row m-3">
+          <div class="col-12 col-lg-12">
+            <div class="card">
+              <div class="card-header">Sales Report
+                {{!-- <div class="card-action">
+                  <div class="dropdown">
+                    <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
+                      <i class="icon-options"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                      <a class="dropdown-item" href="javascript:void();">Action</a>
+                      <a class="dropdown-item" href="javascript:void();">Another action</a>
+                      <a class="dropdown-item" href="javascript:void();">Something else here</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="javascript:void();">Separated link</a>
+                    </div>
+                  </div>
+                </div> --}}
+              </div>
+
+             
+              <div class="table-responsive">
+                <table class="table align-items-center table-flush table-borderless" id="yearly-table">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Date</th>
+                      <th>Product Name</th>
+                      <th>Quantity</th>
+                      <th>Price</th>
+                      <th>Payment</th>
+                      <th>Revenue</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    {{#each salesReport}}
+                    <tr>
+                      <td>{{this.index}}</td>
+                      <td>{{this.date}}</td>
+                      <td>{{this.products.productname}}</td>
+                      <td>{{this.quantity}}</td>
+                      <td>{{this.products.price}}</td>
+                      <td>{{this.paymentmethod}}</td>
+                      <td>{{this.Revenue}}</td>
+                    </tr>
+                    {{/each}}
+                     <tr>
+                    <td>Total:Rs.{{Total}}</td>
+                    </tr>
+                  </tbody>
+                  
+                </table>
+              </div>
+             
+            </div>
+          </div>
+        </div>
+
+         <button class="btn btn-primary mb-3 mr-2" onclick="yearlyReportPDF()"
+            style="background-color: rgb(73, 72, 132);"><i class="fa fa-download"></i> download Sales report PDF</button>
+        <!--End Row-->
+
+         {{else}}
+
+
+              <div class="container-fluid  mt-100">
+                <div class="row">
+
+                  <div class="col-md-12">
+
+                    <div class="card">
+                      <div class="card-header">
+                        <h5>Sales Report</h5>
+                      </div>
+                      <div class="card-body cart">
+                        <div class="col-sm-12 empty-cart-cls text-center">
+                          <img src="https://www.pngfind.com/pngs/m/494-4946953_questionnaires-hd-png-download.png" width="130" height="130"
+                            class="img-fluid mb-4 mr-3">
+                          <h3><strong>NO sales Report</strong></h3>
+                          
+                          
+
+
+                        </div>
+                      </div>
+                    </div>
+
+
+                  </div>
+
+                </div>
+
+              </div>
+
+              {{/if}}
+
+        {{!-- <div class="row">
+          <div class="col-12 col-lg-12">
+            <div class="card">
+              <div class="card-header">Sales Report Monthly
+
+              </div>
+              <div class="table-responsive">
+                <table class="table align-items-center table-flush table-borderless" id="monthly-table">
+                  <thead>
+
+
+                    <tr>
+                      <th>No</th>
+                      <th>Month</th>
+                      <th>Orders</th>
+                      <th>Total</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    {{#each totalsalesByMonth}}
+                    <tr>
+                      <td>{{@index}}</td>
+                      <td>{{this._id}}</td>
+                      <td>{{this.count}}</td>
+                      <td>{{this.total}}</td>
+                    </tr>
+
+                    {{/each}}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div> --}}
+        <!--End Row-->
+
+
+        <div class="row">
+          <div class="col-12 col-lg-12">
+            {{!-- <div class="card"> --}}
+              {{!-- <div class="card-header">Sales Report Daily
+
+              </div> --}}
+
+              {{!-- <div class="table-responsive">
+                <table class="table align-items-center table-flush table-borderless" id="weekly-table">
+                  <thead>
+
+
+                    <tr>
+                      <th>No</th>
+                      <th>Day</th>
+                      <th>Orders</th>
+                      <th>Total</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    {{#each totalSalesByDaily}}
+                    <tr>
+                      <td>{{@index}}</td>
+                      <td>{{this._id.day}}</td>
+                      <td>{{this.count}}</td>
+                      <td>{{this.total}}</td>
+                    </tr>
+
+                    {{/each}}
+                  </tbody>
+                </table>
+              </div> --}}
+              {{!-- </div> --}}
+          </div>
+        </div>
+        <!--End Row-->
+
+
+
+
+
+
+        <!--End Dashboard Content-->
+
+        <!--start overlay-->
+        <div class="overlay toggle-menu"></div>
+        <!--end overlay-->
+
+      </div>
+      <!-- End container-fluid-->
+
+    </div>
+    <!--End content-wrapper-->
+    <!--Start Back To Top Button-->
+    <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+    <!--End Back To Top Button-->
+
+    <!--Start footer-->
+    
+    <!--End footer-->
+
+    <!--start color switcher-->
+
+    <!--end color switcher-->
+
+  </div>
+  <!--End wrapper-->
+
+  {{>adminscriptlinks}}
+
+
+  <script>
+    function weeklyReportPDF() {
+      var doc = new jsPDF('p', 'pt', 'letter');
+      var htmlstring = '';
+      var tempVarToCheckPageHeight = 0;
+      var pageHeight = 0;
+      pageHeight = doc.internal.pageSize.height;
+      specialElementHandlers = {
+        // element with id of "bypass" - jQuery style selector  
+        '#bypassme': function (element, renderer) {
+          // true = "handled elsewhere, bypass text extraction"  
+          return true
+        }
+      };
+      margins = {
+        top: 150,
+        bottom: 60,
+        left: 40,
+        right: 40,
+        width: 600
+      };
+      var y = 20;
+      doc.setLineWidth(2);
+      doc.text(200, y = y + 30, "Weekly Sales Report");
+      doc.autoTable({
+        html: '#weekly-table',
+        startY: 70,
+        theme: 'grid',
+        columnStyles: {
+          0: {
+            cellWidth: 180,
+          },
+          1: {
+            cellWidth: 80,
+          },
+          2: {
+            cellWidth: 80,
+          },
+                           {{!-- 3: {
+        cellWidth: 80,
+      } --}}
+                        },
+    styles: {
+      minCellHeight: 40
+    }
+                    })
+    doc.save('sales-weekly-report.pdf');
+                }
+
+
+    function monthlyReportPDF() {
+      var doc = new jsPDF('p', 'pt', 'letter');
+      var htmlstring = '';
+      var tempVarToCheckPageHeight = 0;
+      var pageHeight = 0;
+      pageHeight = doc.internal.pageSize.height;
+      specialElementHandlers = {
+        // element with id of "bypass" - jQuery style selector  
+        '#bypassme': function (element, renderer) {
+          // true = "handled elsewhere, bypass text extraction"  
+          return true
+        }
+      };
+      margins = {
+        top: 150,
+        bottom: 60,
+        left: 40,
+        right: 40,
+        width: 600
+      };
+      var y = 20;
+      doc.setLineWidth(2);
+      doc.text(200, y = y + 30, "Monthly Sales Report");
+      doc.autoTable({
+        html: '#monthly-table',
+        startY: 70,
+        theme: 'grid',
+        columnStyles: {
+          0: {
+            cellWidth: 180,
+          },
+          1: {
+            cellWidth: 80,
+          },
+          2: {
+            cellWidth: 80,
+          },
+                            {{!-- 3: {
+        cellWidth: 80,
+      } --}}
+                        },
+    styles: {
+      minCellHeight: 40
+    }
+                    })
+    doc.save('sales-monthly-report.pdf');
+                }
+
+
+    function yearlyReportPDF() {
+      var doc = new jsPDF('p', 'pt', 'letter');
+      var htmlstring = '';
+      var tempVarToCheckPageHeight = 0;
+      var pageHeight = 0;
+      pageHeight = doc.internal.pageSize.height;
+      specialElementHandlers = {
+        // element with id of "bypass" - jQuery style selector  
+        '#bypassme': function (element, renderer) {
+          // true = "handled elsewhere, bypass text extraction"  
+          return true
+        }
+      };
+      margins = {
+        top: 150,
+        bottom: 60,
+        left: 40,
+        right: 40,
+        width: 600
+      };
+      var y = 20;
+      doc.setLineWidth(2);
+      doc.text(200, y = y + 30, " Sales Report");
+      doc.autoTable({
+        html: '#yearly-table',
+        startY: 70,
+        theme: 'grid',
+        columnStyles: {
+          0: {
+            cellWidth: 180,
+          },
+          1: {
+            cellWidth: 80,
+          },
+          2: {
+            cellWidth: 80,
+          },
+                            {{!-- 3: {
+        cellWidth: 80,
+      } --}}
+                        },
+    styles: {
+      minCellHeight: 40
+    }
+                    })
+    doc.save('sales-report.pdf');
+                }
+  </script>
+
+
+
+
+  <script>
+
+    $('#Allsubmit').click((e) => {
+      e.preventDefault()
+
+
+      let value = document.getElementById('All').value
+
+
+      $.ajax({
+
+        url: "/admin/salesreport",
+        method: "post",
+        data: {
+          value
+        },
+
+        success: (response) => {
+
+          if (response.status) {
+            location.reload()
+          }
+
+
+        }
+
+      })
+
+
+
+    })
+
+
+   
+
+
+  </script>
+
+  <script>
+    function myFunction(){
+
+      let day=document.getElementById('day').value
+      let month=document.getElementById('month').value
+      let Year=document.getElementById('year').value
+      let time='00:00:00 +0000'
+ 
+
+       let date = month.concat("-", day,"-", Year," ",time);
+      
+       $.ajax({
+         url: "/admin/salesreport",
+        method: "post",
+        data: {
+          date
+        },
+
+        success: (response) => {
+
+          if (response.status) {
+            location.reload()
+          }
+
+
+        }
+
+      })
+
+
+     
+
+
+    }
+  </script>
+
+
+  <script>
+
+    $('#customsearch').click((e) => {
+      e.preventDefault()
+
+
+      let fromdate = document.getElementById('from').value
+      let todate= document.getElementById('To').value
+
+
+      $.ajax({
+
+        url: "/admin/salesreport",
+        method: "post",
+        data: {
+          fromdate,
+          todate
+        },
+
+        success: (response) => {
+
+          if (response.status) {
+            location.reload()
+          }
+
+
+        }
+
+      })
+
+
+
+    })
+
+
+  </script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.min.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    {{>adminheaderlinks}}
+
+</head>
+
+<body style="background-color:rgb(38, 50, 53);">
+
+    <!-- Start wrapper-->
+    <div id="wrapper">
+
+        <!--Start sidebar-wrapper-->
+        {{>adminsidebar}}
+        <!--End sidebar-wrapper-->
+
+        <!--Start topbar header-->
+        {{>adminheader}}
+        <!--End topbar header-->
+
+        <div class="clearfix"></div>
+
+        <div class="content-wrapper">
+            <div class="container-fluid">
+
+                <!--Start Dashboard Content-->
+
+                <div class="mask d-flex align-items-center h-100 gradient-custom-3 mt-5">
+                    <div class="container h-100">
+                        <div class="row d-flex justify-content-center align-items-center h-100">
+                            <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                                <div class="card" style="border-radius: 15px;">
+                                    <div class="card-body p-5">
+                                        <h2 class="text-uppercase text-center mb-3">Create Coupon</h2>
+
+                                        <form action="/admin/addcoupon" method="post">
+
+                                           
+                                            <div class="form-outline mb-4">
+                                                <label class="form-label" for="form3Example1cg">Coupon code</label>
+                                                <input type="text" id="form3Example1cg" name="couponcode"
+                                                    class="form-control form-control-md" required />
+                                            </div>
+
+                                            <div class="form-outline mb-4">
+                                                <label class="form-label" for="form3Example3cg">discount Price</label>
+                                                <input type="text" id="form3Example3cg" name="value"
+                                                    class="form-control form-control-md" required />
+                                            </div>
+
+                                           
+                                            <div class="form-outline mb-4">
+                                                <label class="form-label" for="form3Example3cg">Exp date</label>
+                                                <input type="date" id="exptDate" name="Expdate"
+                                                    class="form-control form-control-md" required />
+                                            </div>
+
+
+                                            <div class="form-outline mb-4">
+                                                <label class="form-label" for="form3Example1cg">Min order Price</label>
+                                                <input type="text" id="form3Example1cg" name="minorderprice"
+                                                    class="form-control form-control-md" min="0" max="10" required />
+                                            </div>
+
+
+
+                                            <div class="form-outline mb-4">
+                                                <input type="submit" value="submit"
+                                                    class="btn btn-success  btn-md gradient-custom-4">
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--End Dashboard Content-->
+
+                <!--start overlay-->
+                <div class="overlay toggle-menu"></div>
+                <!--end overlay-->
+
+            </div>
+            <!-- End container-fluid-->
+
+        </div>
+        <!--End content-wrapper-->
+        <!--Start Back To Top Button-->
+        <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+        <!--End Back To Top Button-->
+
+        <!--Start footer-->
+        
+        <!--End footer-->
+
+        <!--start color switcher-->
+
+        <!--end color switcher-->
+
+    </div>
+    <!--End wrapper-->
+
+    {{!--
+    <script defer src="https://cdn.crop.guide/loader/l.js?c=RWRZPY"></script> --}}
+
+    <script defer src="https://cdn.crop.guide/loader/l.js?c=TXSZKK"></script>
+    <script>
+        function viewImage1(event) {
+            document.getElementById('imgView1').src = URL.createObjectURL(event.target.files[0])
+        }
+
+        function viewImage2(event) {
+            document.getElementById('imgView2').src = URL.createObjectURL(event.target.files[0])
+        }
+
+        function viewImage3(event) {
+            document.getElementById('imgView3').src = URL.createObjectURL(event.target.files[0])
+        }
+
+        function viewImage4(event) {
+            document.getElementById('imgView4').src = URL.createObjectURL(event.target.files[0])
+        }
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <script>
+        $(function () {
+            var dtToday = new Date();
+
+            var month = dtToday.getMonth() + 1;
+            var day = dtToday.getDate();
+            var year = dtToday.getFullYear();
+            if (month < 10)
+                month = '0' + month.toString();
+            if (day < 10)
+                day = '0' + day.toString();
+
+            var maxDate = year + '-' + month + '-' + day;
+
+            // or instead:
+            // var maxDate = dtToday.toISOString().substr(0, 10);
+
+
+            $('#txtDate').attr('min', maxDate);
+        });
+
+
+
+        $(function () {
+
+            var dtToday = new Date()
+            var month = dtToday.getMonth() + 1;
+            var day = dtToday.getDate();
+            var year = dtToday.getFullYear();
+            if (month < 10)
+                month = '0' + month.toString();
+            if (day < 10)
+                day = '0' + day.toString();
+
+            var maxDate = year + '-' + month + '-' + day;
+
+            // or instead:
+            // var maxDate = dtToday.toISOString().substr(0, 10);
+
+
+            $('#exptDate').attr('min', maxDate);
+        });
+    </script>
+
+    {{>adminscriptlinks}}
+
+
+
+</body>
+
+</html>

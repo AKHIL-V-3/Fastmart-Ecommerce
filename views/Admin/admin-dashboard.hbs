@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <meta name="description" content=""/>
+  <meta name="author" content=""/>
+  <title>Dashtreme Admin - Free Dashboard for Bootstrap 4 by Codervent</title>
+  <!-- loader-->
+
+<script src="/Admin/assets/js/pace.min.js"></script>
+
+  {{>adminheaderlinks}}
+  
+</head>
+
+<body style="background-color:rgb(38, 50, 53);">
+ 
+<!-- Start wrapper-->
+ <div id="wrapper">
+ 
+  <!--Start sidebar-wrapper-->
+  {{>adminsidebar}}
+   <!--End sidebar-wrapper-->
+
+<!--Start topbar header-->
+{{>adminheader}}
+<!--End topbar header-->
+
+<div class="clearfix"></div>
+	
+  <div class="content-wrapper">
+    <div class="container-fluid">
+
+  <!--Start Dashboard Content-->
+
+	<div class="card mt-3">
+    <div class="card-content">
+        <div class="row row-group m-0">
+            <div class="col-12 col-lg-6 col-xl-3 border-light">
+                <div class="card-body">
+                  <h5 class="text-white mb-0">{{totalOrdercount}} <span class="float-right"><i class="fa fa-shopping-cart"></i></span></h5>
+                    <div class="progress my-3" style="height:3px;">
+                       <div class="progress-bar" style="width:55%"></div>
+                    </div>
+                  <p class="mb-0 text-white small-font">Total Orders </p>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6 col-xl-3 border-light">
+                <div class="card-body">
+                  <h5 class="text-white mb-0">{{totalsalesamount}} <span class="float-right"><i class="fa fa-usd"></i></span></h5>
+                    <div class="progress my-3" style="height:3px;">
+                       <div class="progress-bar" style="width:55%"></div>
+                    </div>
+                  <p class="mb-0 text-white small-font">Total Revenue </p>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6 col-xl-3 border-light">
+                <div class="card-body">
+                  <h5 class="text-white mb-0">{{totaluser}} <span class="float-right"><i class="fa fa-eye"></i></span></h5>
+                    <div class="progress my-3" style="height:3px;">
+                       <div class="progress-bar" style="width:55%"></div>
+                    </div>
+                  <p class="mb-0 text-white small-font">Customers</p>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6 col-xl-3 border-light">
+               
+            </div>
+        </div>
+    </div>
+ </div>  
+
+	<div class="row">
+     <div class="col-12 col-lg-8 col-xl-8">
+	    <div class="card">
+		 <div class="card-header">Sales Report
+		   <div class="card-action">
+			 <div class="dropdown">
+			 <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
+			  <i class="icon-options"></i>
+			 </a>
+				<div class="dropdown-menu dropdown-menu-right">
+				<button class="dropdown-item" onclick="chart5()">Year</button>
+				<button class="dropdown-item" onclick="chart6()">Monthly</button>
+				<button class="dropdown-item" onclick="chart7()">Daily</button>
+				<div class="dropdown-divider"></div>
+			   </div>
+			  </div>
+		   </div>
+		 </div>
+		 <div class="card-body">
+		    <ul class="list-inline">
+			  <li class="list-inline-item"><i class="fa fa-circle mr-2 text-white"></i>Revenue</li>
+			</ul>
+			<div class="chart-container-1">
+			  <canvas id="chart1"></canvas>
+			</div>
+		 </div>
+		 
+		 {{!-- <div class="row m-0 row-group text-center border-top border-light-3">
+		   <div class="col-12 col-lg-4">
+		     <div class="p-3">
+		       <h5 class="mb-0">45.87M</h5>
+			   <small class="mb-0">Overall Visitor <span> <i class="fa fa-arrow-up"></i> 2.43%</span></small>
+		     </div>
+		   </div>
+		   <div class="col-12 col-lg-4">
+		     <div class="p-3">
+		       <h5 class="mb-0">15:48</h5>
+			   <small class="mb-0">Visitor Duration <span> <i class="fa fa-arrow-up"></i> 12.65%</span></small>
+		     </div>
+		   </div>
+		   <div class="col-12 col-lg-4">
+		     <div class="p-3">
+		       <h5 class="mb-0">245.65</h5>
+			   <small class="mb-0">Pages/Visit <span> <i class="fa fa-arrow-up"></i> 5.62%</span></small>
+		     </div>
+		   </div>
+		 </div> --}}
+		 
+		</div>
+	 </div>
+
+    
+	</div><!--End Row-->
+
+
+ 
+	
+	
+
+      <!--End Dashboard Content-->
+	  
+	<!--start overlay-->
+		  <div class="overlay toggle-menu"></div>
+		<!--end overlay-->
+		
+    </div>
+    <!-- End container-fluid-->
+    
+    </div><!--End content-wrapper-->
+   <!--Start Back To Top Button-->
+    <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+    <!--End Back To Top Button-->
+	
+	<!--Start footer-->
+	<footer class="footer">
+      <div class="container">
+        <div class="text-center">
+          Copyright © 2018 Dashtreme Admin
+        </div>
+      </div>
+    </footer>
+	<!--End footer-->
+	
+  <!--start color switcher-->
+   
+  <!--end color switcher-->
+   
+
+  
+
+  </div><!--End wrapper-->
+
+  <!-- Bootstrap core JavaScript-->
+  {{>adminscriptlinks}}
+
+
+  <script>
+
+    var myChart1;
+    var myChart2;
+    var myChart3;
+    var chart1;
+    var chart2;
+    var chart3;
+
+	window.onload(chart5())
+	
+	chart1=true
+
+    if(chart2){
+      myChart2.destroy()
+    }
+    if(chart3){
+      myChart3.destroy()
+    }
+
+    function chart5(){
+
+    chart1=true
+
+    if(chart2){
+      myChart2.destroy()
+    }
+    if(chart3){
+      myChart3.destroy()
+    }
+      
+var ctx = document.getElementById('chart1').getContext('2d');
+		
+			 myChart1 = new Chart(ctx, {
+				type: 'bar',
+				data: {
+					labels: [{{#each totalsalesByYear}}'{{_id}}',{{/each}}],
+					datasets: [{
+						label: 'Income',
+						data: [{{#each totalsalesByYear}}'{{total}}',{{/each}}],
+						backgroundColor: '#fff',
+						borderColor: "transparent",
+						pointRadius :"0",
+						borderWidth: 3
+					}]
+				},
+			options: {
+				maintainAspectRatio: false,
+				legend: {
+				  display: false,
+				  labels: {
+					fontColor: '#ddd',  
+					boxWidth:40
+				  }
+				},
+				tooltips: {
+				  displayColors:false
+				},	
+			  scales: {
+				  xAxes: [{
+					ticks: {
+						beginAtZero:true,
+						fontColor: '#ddd'
+					},
+					gridLines: {
+					  display: true ,
+					  color: "rgba(221, 221, 221, 0.08)"
+					},
+				  }],
+				   yAxes: [{
+					ticks: {
+						beginAtZero:true,
+						fontColor: '#ddd'
+					},
+					gridLines: {
+					  display: true ,
+					  color: "rgba(221, 221, 221, 0.08)"
+					},
+				  }]
+				 }
+
+			 }
+			});
+      }
+
+
+
+       function chart6(){
+        chart2=true
+
+         if(chart1){
+      myChart1.destroy()
+    }
+    if(chart3){
+      myChart3.destroy()
+    }
+        
+var ctx = document.getElementById('chart1').getContext('2d');
+		
+			 myChart2 = new Chart(ctx, {
+				type: 'bar',
+				data: {
+					labels: [{{#each totalsalesByMonth}}'{{_id}}',{{/each}}],
+					datasets: [{
+						label: 'Income',
+						data: [{{#each totalsalesByMonth}}'{{total}}',{{/each}}],
+						backgroundColor: '#fff',
+						borderColor: "transparent",
+						pointRadius :"0",
+						borderWidth: 3
+					}]
+				},
+			options: {
+				maintainAspectRatio: false,
+				legend: {
+				  display: false,
+				  labels: {
+					fontColor: '#ddd',  
+					boxWidth:40
+				  }
+				},
+				tooltips: {
+				  displayColors:false
+				},	
+			  scales: {
+				  xAxes: [{
+					ticks: {
+						beginAtZero:true,
+						fontColor: '#ddd'
+					},
+					gridLines: {
+					  display: true ,
+					  color: "rgba(221, 221, 221, 0.08)"
+					},
+				  }],
+				   yAxes: [{
+					ticks: {
+						beginAtZero:true,
+						fontColor: '#ddd'
+					},
+					gridLines: {
+					  display: true ,
+					  color: "rgba(221, 221, 221, 0.08)"
+					},
+				  }]
+				 }
+
+			 }
+			});
+      }
+
+
+
+       function chart7(){
+        chart3=true
+         if(chart2){
+      myChart2.destroy()
+    }
+    if(chart1){
+      myChart1.destroy()
+    }
+      
+var ctx = document.getElementById('chart1').getContext('2d');
+		
+			 myChart3 = new Chart(ctx, {
+				type: 'bar',
+				data: {
+					labels: [{{#each totalSalesByDaily}}'{{_id.day}}',{{/each}}],
+					datasets: [{
+						label: 'Income',
+						data: [{{#each totalSalesByDaily}}'{{total}}',{{/each}}],
+						backgroundColor: '#fff',
+						borderColor: "transparent",
+						pointRadius :"0",
+						borderWidth: 3
+					}]
+				},
+			options: {
+				maintainAspectRatio: false,
+				legend: {
+				  display: false,
+				  labels: {
+					fontColor: '#ddd',  
+					boxWidth:40
+				  }
+				},
+				tooltips: {
+				  displayColors:false
+				},	
+			  scales: {
+				  xAxes: [{
+					ticks: {
+						beginAtZero:true,
+						fontColor: '#ddd'
+					},
+					gridLines: {
+					  display: true ,
+					  color: "rgba(221, 221, 221, 0.08)"
+					},
+				  }],
+				   yAxes: [{
+					ticks: {
+						beginAtZero:true,
+						fontColor: '#ddd'
+					},
+					gridLines: {
+					  display: true ,
+					  color: "rgba(221, 221, 221, 0.08)"
+					},
+				  }]
+				 }
+
+			 }
+			});
+      }
+  </script>
+
+
+{{!-- __________________________________________________________________ --}}
+
+{{!-- Pie-Chart --}}
+
+  {{!-- <script>
+
+    var myChart1;
+    var myChart2;
+    var myChart3;
+    var chart1;
+    var chart2;
+    var chart3;
+
+    function chart8(){
+    
+    chart1=true
+
+    if(chart2){
+      myChart2.destroy()
+    }
+    if(chart3){
+      myChart3.destroy()
+    }
+      
+var ctx = document.getElementById('chart2').getContext('2d');
+		
+			 myChart1 = new Chart(ctx, {
+				type: 'pie',
+				data: {
+					labels: [{{#each totalsalesByYear}}'{{_id}}',{{/each}}],
+					datasets: [{
+						label: 'Income',
+						data: [{{#each totalsalesByYear}}'{{total}}',{{/each}}],
+						backgroundColor: 'blue',
+						borderColor: "transparent",
+						pointRadius :"0",
+						borderWidth: 3
+					}]
+				},
+			options: {
+				maintainAspectRatio: false,
+				legend: {
+				  display: false,
+				  labels: {
+					fontColor: '#ddd',  
+					boxWidth:40
+				  }
+				},
+				tooltips: {
+				  displayColors:false
+				},	
+			  scales: {
+				  xAxes: [{
+					ticks: {
+						beginAtZero:true,
+						fontColor: '#ddd'
+					},
+					gridLines: {
+					  display: true ,
+					  color: "rgba(221, 221, 221, 0.08)"
+					},
+				  }],
+				   yAxes: [{
+					ticks: {
+						beginAtZero:true,
+						fontColor: '#ddd'
+					},
+					gridLines: {
+					  display: true ,
+					  color: "rgba(221, 221, 221, 0.08)"
+					},
+				  }]
+				 }
+
+			 }
+			});
+      }
+
+
+
+       function chart9(){
+        chart2=true
+
+         if(chart1){
+      myChart1.destroy()
+    }
+    if(chart3){
+      myChart3.destroy()
+    }
+        
+var ctx = document.getElementById('chart2').getContext('2d');
+		
+			 myChart2 = new Chart(ctx, {
+				type: 'pie',
+				data: {
+					labels: [{{#each totalsalesByMonth}}'{{_id}}',{{/each}}],
+					datasets: [{
+						label: 'Income',
+						data: [{{#each totalsalesByMonth}}'{{total}}',{{/each}}],
+						backgroundColor: [
+							
+							" rgb(147, 83, 206)",
+							"rgba(255, 255, 255, 0.305)",
+							"white"
+						],
+						borderColor: "transparent",
+						pointRadius :"0",
+						borderWidth: 3
+					}]
+				},
+			options: {
+				maintainAspectRatio: false,
+				legend: {
+				  display: false,
+				  labels: {
+					fontColor: '#ddd',  
+					boxWidth:40
+				  }
+				},
+				tooltips: {
+				  displayColors:false
+				},	
+			  scales: {
+				  xAxes: [{
+					ticks: {
+						beginAtZero:true,
+						fontColor: '#ddd'
+					},
+					gridLines: {
+					  display: true ,
+					  color: "rgba(221, 221, 221, 0.08)"
+					},
+				  }],
+				   yAxes: [{
+					ticks: {
+						beginAtZero:true,
+						fontColor: '#ddd'
+					},
+					gridLines: {
+					  display: true ,
+					  color: "rgba(221, 221, 221, 0.08)"
+					},
+				  }]
+				 }
+
+			 }
+			});
+      }
+
+
+
+       function chart10(){
+        chart3=true
+         if(chart2){
+      myChart2.destroy()
+    }
+    if(chart1){
+      myChart1.destroy()
+    }
+      
+var ctx = document.getElementById('chart2').getContext('2d');
+		
+			 myChart3 = new Chart(ctx, {
+				type: 'pie',
+				data: {
+					labels: [{{#each totalSalesByDaily}}'{{_id}}',{{/each}}],
+					datasets: [{
+						label: 'Income',
+						data: [{{#each totalSalesByDaily}}'{{total}}',{{/each}}],
+						backgroundColor: [
+							"#ffffff",
+							"rgba(255, 255, 255, 0.70)",
+							"rgba(255, 255, 255, 0.50)",
+							"rgba(255, 255, 255, 0.20)"
+						],
+						borderColor: "transparent",
+						pointRadius :"0",
+						borderWidth: 3
+					}]
+				},
+			options: {
+				maintainAspectRatio: false,
+				legend: {
+				  display: false,
+				  labels: {
+					fontColor: '#ddd',  
+					boxWidth:40
+				  }
+				},
+				tooltips: {
+				  displayColors:false
+				},	
+			  scales: {
+				  xAxes: [{
+					ticks: {
+						beginAtZero:true,
+						fontColor: '#ddd'
+					},
+					gridLines: {
+					  display: true ,
+					  color: "rgba(221, 221, 221, 0.08)"
+					},
+				  }],
+				   yAxes: [{
+					ticks: {
+						beginAtZero:true,
+						fontColor: '#ddd'
+					},
+					gridLines: {
+					  display: true ,
+					  color: "rgba(221, 221, 221, 0.08)"
+					},
+				  }]
+				 }
+
+			 }
+			});
+      }
+  </script> --}}
+
+  
+</body>
+</html>

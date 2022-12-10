@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>Login 10</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="/css/userLoigin.css">
+
+	<style>
+		.error-hint{
+           color: red;
+		   
+		}
+
+		.hidden{
+			display: none;
+		}
+		input.invalid{
+			border: 1px solid red;
+		}
+
+	</style>
+{{!--  --}}
+	</head>
+	<body class="img js-fullheight" style="background-image: url(https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);">
+	<section class="">
+		<div class="container d-flex p-5">
+
+
+			<div class="container">
+			
+			<div class="row justify-content-center">
+
+				{{!-- <div class="d-flex justify-content-center" style="margin-top:-80px;">
+					<h1 style=" color: #fff;">welcome</h1>
+				</div> --}}
+				<div class="col-md-6 col-md-4 border p-lg-5 shadow p-3 mb-5 rounded" style="background-image: url(https://i.pinimg.com/originals/e8/ab/83/e8ab83923295950ea0456f39aed9f5f6.jpg); background-size:cover; overflow-y: hidden;">
+
+					<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-3">
+					<h1 class="heading-section">Sign Up</h1>
+				</div>
+			</div>
+					<div class="login-wrap p-0">
+				   {{#if emailOrphoneErr}}
+		      	  <p class="btn btn-danger">Email or phone already Exist</p>
+		      	   {{/if}}
+				<form action="/signup" method="post" id="form" class="signin-form">
+
+                   
+		      			<input type="text" class="form-control" name="username" onkeyup="validName()" id="name" placeholder="Username" >
+					  	<span  id="names" class="text-danger"></span>
+		      		
+		      		
+		      			<input type="email" class="form-control mt-3" name="email" id="email" onkeyup="validEmail()" placeholder="Email" >
+					   	<span id="emails" class="text-danger"></span>
+		      	
+                    
+		      			<input type="text" class="form-control mt-3" name="phone" id="phone" onkeyup="validPhone()" placeholder="Phone" >
+						    <span id="phones" class="text-danger"></span>
+		      		
+	           
+	              <input type="password" class="form-control mt-3" name="password" id="password" onkeyup="validPassowrd()" placeholder="Password"  >
+				      <span id="passwords" class="text-danger"></span>
+	              
+
+	              
+                    <div class="form-group d-none">
+	              <input type="password" class="form-control" name="status" value="" hidden>  
+	            </div>
+
+	            
+	            <div class="form-group mt-3">
+	            	<button type="submit" onclick="return validation()" class="form-control btn btn-primary submit px-3">Sign Up</button>
+	            </div>
+
+                <div class="d-flex justify-content-center mb-3">
+					<span >Already a customer? <a class="text-decoration-none" href="/login">Login</a></span>
+				</div>
+	            
+	          </form>
+	          
+		      </div>
+				</div>
+			</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="js/jquery.min.js"></script>
+  <script src="js/popper.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/main.js"></script>
+
+  <script>
+        
+
+        // validation
+
+        var Name = document.getElementById('names')
+        var Email = document.getElementById('emails')
+        var Password = document.getElementById('passwords')
+        var Phone = document.getElementById('phones')
+        function validEmail() {
+            const email = document.getElementById('email').value
+            if (email == "") {
+                Email.innerHTML = "enter your email address"
+                return false
+            }
+            if (!email.match(/^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/)) {
+                Email.innerHTML = 'enter a proper email adress'
+                return false
+            }
+            Email.innerHTML = null
+            return true
+        }       
+        function validName() {
+            
+            const name = document.getElementById('name').value;
+            if (name == "") {
+                Name.innerHTML = 'Enter your Name'
+                return false
+            }
+            if (!name.match(/^[a-zA-Z\s-, ]+$/)) {
+                Name.innerHTML = 'Numbers and symbols are not allowed'
+                return false
+            }
+            if(name.length < 3){
+                Name.innerHTML = "Name must be three characters long"
+                return false
+            }
+            Name.innerHTML = null
+            return true
+        }
+        
+        function validPhone() {
+            const phone = document.getElementById('phone').value
+            if (phone == "") {
+                Phone.innerHTML = "enter a phone number"
+                return false
+            }
+            if (!phone.match(/^\d{10}$/)) {
+                Phone.innerHTML = "phone number should be  10 digits "
+                return false
+            }
+            Phone.innerHTML = null
+            return true
+        }
+        function validPassowrd() {
+            const password = document.getElementById('password').value
+            if (password == "") {
+                Password.innerHTML = "enter password"
+                return false
+            }
+            if (password.length < 6) {
+                Password.innerHTML = "password should be more than six characters"
+                return false
+            }
+            Password.innerHTML = null
+            return true
+        }
+        function validation() {
+            if (!validEmail() && !validName() && !validPassowrd() && !validPhone()) {
+                return false
+            } else if (!validEmail() || !validName() || !validPassowrd() || !validPhone() ) {
+                return false
+            }else { return true }
+        }
+    </script>
+
+	</body>
+</html>
+

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  {{>adminheaderlinks}}
+
+</head>
+
+<body style="background-color:rgb(38, 50, 53);">
+
+  <!-- Start wrapper-->
+  <div id="wrapper">
+
+    <!--Start sidebar-wrapper-->
+    {{>adminsidebar}}
+    <!--End sidebar-wrapper-->
+
+    <!--Start topbar header-->
+    {{>adminheader}}
+    <!--End topbar header-->
+
+    <div class="clearfix"></div>
+
+    <div class="content-wrapper">
+      <div class="container-fluid">
+
+        <!--Start Dashboard Content-->
+
+        {{!-- <div class="d-flex justify-content-end">
+          <a href="/admin/addproduct" class="btn btn-success mb-3" style="background-color: rgb(20, 72, 23);">Add
+            Product</a>
+        </div> --}}
+
+        <div class="row">
+          <div class="col-12 col-lg-12">
+            <div class="card">
+              <div class="card-header">Product List
+                {{!-- <div class="card-action">
+                  <div class="dropdown">
+                    <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
+                      <i class="icon-options"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                      <a class="dropdown-item" href="javascript:void();">Action</a>
+                      <a class="dropdown-item" href="javascript:void();">Another action</a>
+                      <a class="dropdown-item" href="javascript:void();">Something else here</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="javascript:void();">Separated link</a>
+                    </div>
+                  </div>
+                </div> --}}
+              </div>
+              <div class="table-responsive">
+                <table class="table align-items-center table-flush table-borderless">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Name</th>
+                      <th>Price</th>
+                      <th>category</th>
+                      <th>Description</th>
+                      <th>Photo</th>
+                      <th>Manage</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    {{#each products}}
+                    <tr>
+                      <td>{{this.index}}</td>
+                      <td>{{this.productname}}</td>
+                      <td>₹{{this.price}}</td>
+                      <td>{{this.category}}</td>
+                      <td>{{this.description}}</td>
+                      <td><img style="height: 50px;width:50px ;" src="/ProductImages/{{this.img.[3]}}" class=""
+                          alt="product img"></td>
+                      <td>
+                        <a href="/admin/editproduct/{{this._id}}" class="btn btn-success"
+                          style="background-color: rgb(20, 72, 29);">Edit</a>
+                        <a href="/admin/deleteproduct/{{this._id}}"
+                          onclick="return confirm('Are you want to delete {{this.productname}} ?')"
+                          class="btn btn-danger" style="background-color: rgb(72, 20, 20);">Delete</a>
+                      </td>
+                    </tr>
+
+                    {{/each}}
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--End Row-->
+
+
+        <script >
+
+
+        function range(c,m) {
+  var current = c || 1,
+      last = m,
+      delta = 2,
+      left = current - delta,
+      right = parseInt(current) + delta + 1,
+      range = [],
+      rangeWithEllipsis = [],
+      l,
+      t;
+
+      range.push(1);
+      for (var i = c - delta ; i <= c + delta ; i++) {
+        if (i >= left && i < right && i < m && i > 1) {
+          range.push(i);
+        }
+      }  
+      range.push(m);
+
+      for (var i of range) {
+        if (l) {
+          if (i - l === 2) {
+            t = l+1;
+            rangeWithEllipsis.push(t);
+          } else if (i - l !== 1) {
+            rangeWithEllipsis.push("...");
+          }
+        }
+        rangeWithEllipsis.push(i);
+        l = i;
+      }
+    return rangeWithEllipsis;
+}
+         
+        </script>
+
+
+        {{!-- <div class="pagination pagination-centered">
+          <ul>
+            {{#paginate pagination type="first"}}
+            <li {{#if disabled}}class="disabled" {{/if}}><a href="?p={{n}}">First</a></li>
+            {{/paginate}}
+            {{#paginate pagination type="previous"}}
+            <li {{#if disabled}}class="disabled" {{/if}}><a href="?p={{n}}">Prev</a></li>
+            {{/paginate}}
+            {{#paginate pagination type="middle" limit="7"}}
+            <li {{#if active}}class="active" {{/if}}><a href="?p={{n}}">{{n}}</a></li>
+            {{/paginate}}
+            {{#paginate pagination type="next"}}
+            <li {{#if disabled}}class="disabled" {{/if}}><a href="?p={{n}}">Next</a></li>
+            {{/paginate}}
+            {{#paginate pagination type="last"}}
+            <li {{#if disabled}}class="disabled" {{/if}}><a href="?p={{n}}">Last</a></li>
+            {{/paginate}}
+          </ul>
+        </div> --}}
+
+        <!--End Dashboard Content-->
+
+        <!--start overlay-->
+        <div class="overlay toggle-menu"></div>
+        <!--end overlay-->
+
+      </div>
+      <!-- End container-fluid-->
+
+    </div>
+    <!--End content-wrapper-->
+    <!--Start Back To Top Button-->
+    <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+    <!--End Back To Top Button-->
+
+    <!--Start footer-->
+    
+    <!--End footer-->
+
+    <!--start color switcher-->
+
+    <!--end color switcher-->
+
+  </div>
+  <!--End wrapper-->
+
+  {{>adminscriptlinks}}
+
+</body>
+
+</html>

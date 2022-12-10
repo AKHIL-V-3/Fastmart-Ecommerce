@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    {{>adminheaderlinks}}
+
+
+
+
+
+
+</head>
+
+<body style="background-color:rgb(38, 50, 53);">
+
+    <!-- Start wrapper-->
+    <div id="wrapper">
+
+        <!--Start sidebar-wrapper-->
+        {{>adminsidebar}}
+        <!--End sidebar-wrapper-->
+
+        <!--Start topbar header-->
+        {{>adminheader}}
+        <!--End topbar header-->
+
+        <div class="clearfix"></div>
+
+        <div class="content-wrapper">
+            <div class="container-fluid">
+
+                <!--Start Dashboard Content-->
+
+                <div class="row">
+                    <div class="col-12 col-lg-12">
+                        <div class="card">
+                            <div class="card-header">Product List
+                                {{!-- <div class="card-action">
+                                    <div class="dropdown">
+                                        <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret"
+                                            data-toggle="dropdown">
+                                            <i class="icon-options"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="javascript:void();">Action</a>
+                                            <a class="dropdown-item" href="javascript:void();">Another action</a>
+                                            <a class="dropdown-item" href="javascript:void();">Something else here</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="javascript:void();">Separated link</a>
+                                        </div>
+                                    </div>
+                                </div> --}}
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table align-items-center table-flush table-borderless">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Product</th>
+                                            <th>Quantity</th>
+                                            <th>Price</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        {{#each products}}
+                                        <tr>
+                                            <td>{{this.index}}</td>
+                                            <td><img style="height: 12rem;width:12rem ;"
+                                                    src="/ProductImages/{{this.products.img.[3]}}" class=""
+                                                    alt="product img">
+                                                <h5 class="product-title mt-3">
+                                                    <a href="#">{{this.products.productname}}</a>
+                                                </h5>
+                                            </td>
+                                            <td class="price-col">{{this.quantity}}</td>
+                                            <td class="price-col">{{this.products.price}}</td>
+
+                                            {{#if this.Status}}
+                                            <td class="stock-col"><span class="in-stock">{{this.Status}}</span></td>
+                                            {{else}}
+                                            <td class="stock-col"><span class="in-stock">Canceled</span></td>
+                                            {{/if}}
+
+                                            <td></td>
+
+
+                                            {{#if changestatus}}
+
+                                             {{#if returnpending}}
+
+                                            <td class="d-flex align-items-top">
+
+                                               
+
+
+                                                <div class="btn-group dropdown-center">
+                                                    <button class="btn btn-primary btn-xsm dropdown-toggle mb-5"
+                                                        style="background-color: rgb(24, 20, 72);" type="button"
+                                                        data-bs-toggle="dropdown">
+                                                        change status
+                                                    </button>
+
+
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+
+                                                        {{#if packed}}
+
+                                                        
+                                                        <a class="dropdown-item" style="border: bottom 1px white;" onclick="return confirm('Are You sure')"
+                                                            href="/admin/shipProduct/{{this._id}}/{{this.products._id}}">shipped</a>
+
+                                                        <a class="dropdown-item" style="border: bottom 1px white;" onclick="return confirm('Are You sure')"
+                                                            href="/admin/deliverProduct/{{this._id}}/{{this.products._id}}">Delivered</a>
+
+                                                            {{else if Shipped}}
+
+                                                            <a class="dropdown-item" style="border: bottom 1px white;" onclick="return confirm('Are You sure')"
+                                                            href="/admin/deliverProduct/{{this._id}}/{{this.products._id}}">Delivered</a>
+
+                                                            {{else}}
+                                                        <a class="dropdown-item" style="border: bottom 1px white;" onclick="return confirm('Are You sure')"
+                                                            href="/admin/cancelProduct/{{this._id}}/{{this.products._id}}">Cancel</a>
+
+                                                        <a class="dropdown-item" style="border: bottom 1px white;" onclick="return confirm('Are You sure')"
+                                                            href="/admin/packProduct/{{this._id}}/{{this.products._id}}">Packed</a>
+
+                                                        <a class="dropdown-item" style="border: bottom 1px white;" onclick="return confirm('Are You sure')"
+                                                            href="/admin/shipProduct/{{this._id}}/{{this.products._id}}">shipped</a>
+
+                                                        <a class="dropdown-item" style="border: bottom 1px white;" onclick="return confirm('Are You sure')"
+                                                            href="/admin/deliverProduct/{{this._id}}/{{this.products._id}}">Delivered</a>
+
+                                                            {{/if}}
+                                                    </div>
+                                                    {{!-- <ul class="dropdown-menu"
+                                                        style="background-color: rgb(88, 86, 102);">
+                                                        <a href="/admin/shipProduct/{{this._id}}/{{this.products._id}}"
+                                                            class="d-flex justify-content-center ">ship product</a>
+                                                        <hr>
+                                                        <a href="/admin/cancelProduct/{{this._id}}/{{this.products._id}}"
+                                                            class="d-flex justify-content-center">cancel product</a>
+                                                    </ul> --}}
+                                                </div>
+
+                                                </td>
+                                                {{else}}
+
+                                                <td class="d-flex align-items-down">
+
+                                               <div class="card">
+                                                <div class="card-body">
+                                                    <p>Product Return Request</p>
+
+                                                    
+                                                  <a href="/admin/returnaccept/{{this._id}}/{{this.products._id}}" class="btn btn-success mr-2" onclick="return confirm('Are You Sure')">Accept</a>
+                                                  <a href="/admin/returndecline/{{this._id}}/{{this.products._id}}" class="btn btn-danger" onclick="return confirm('Are You Sure')" >Decline</a>
+                                                </div>
+                                               </div>
+
+                                               </td>
+
+                                                {{/if}}
+
+                               
+
+                                            {{/if}}
+                                        </tr>
+
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--End Row-->
+
+                <!--End Dashboard Content-->
+
+                <!--start overlay-->
+                <div class="overlay toggle-menu"></div>
+                <!--end overlay-->
+
+            </div>
+            <!-- End container-fluid-->
+
+        </div>
+        <!--End content-wrapper-->
+        <!--Start Back To Top Button-->
+        <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+        <!--End Back To Top Button-->
+
+        <!--Start footer-->
+       
+        <!--End footer-->
+
+        <!--start color switcher-->
+
+        <!--end color switcher-->
+
+    </div>
+    <!--End wrapper-->
+
+    {{>adminscriptlinks}}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+</body>
+
+</html>

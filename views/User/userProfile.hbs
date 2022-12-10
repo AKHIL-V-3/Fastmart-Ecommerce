@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- molla/dashboard.html  22 Nov 2019 10:03:13 GMT -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Molla - Bootstrap eCommerce Template</title>
+    <meta name="keywords" content="HTML5 Template">
+    <meta name="description" content="Molla - Bootstrap eCommerce Template">
+    <meta name="author" content="p-themes">
+    <!-- Favicon -->
+    {{>userheaderlinks}}
+    <!-- Plugins CSS File -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <!-- Main CSS File -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <header class="header">
+            <div class="header-top">
+                <div class="container">
+
+                    {{>userheader}}
+
+                </div><!-- End .header-top -->
+
+
+        </header><!-- End .header -->
+
+        <main class="main">
+            <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+                <div class="container">
+                    <h1 class="page-title">My Account<span>Shop</span></h1>
+                </div><!-- End .container -->
+            </div><!-- End .page-header -->
+            <nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
+                <div class="container">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">My Account</li>
+                    </ol>
+                </div><!-- End .container -->
+            </nav><!-- End .breadcrumb-nav -->
+
+            <div class="page-content">
+                <div class="dashboard">
+                    <div class="container">
+                        <div class="row">
+                            <aside class="col-md-4 col-lg-3">
+                                <ul class="nav nav-dashboard flex-column mb-3 mb-md-0" role="tablist">
+
+                                     <li class="nav-item">
+								        <a class="nav-link active" id="tab-dashboard-link" data-toggle="tab" href="#tab-dashboard" role="tab" aria-controls="tab-dashboard" aria-selected="true">Dashboard</a>
+								    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="tab-orders-link" data-toggle="tab" href="#tab-orders"
+                                            role="tab" aria-controls="tab-orders" aria-selected="false">Orders</a>
+                                    </li>
+
+
+                                     <li class="nav-item">
+                                        <a class="nav-link" id="tab-wallet-link" data-toggle="tab" href="#tab-wallet"
+                                            role="tab" aria-controls="tab-orders" aria-selected="false">Wallet</a>
+                                    </li>
+
+
+
+
+                                     <li class="nav-item">
+                                        <a class="nav-link" id="tab-address-link" data-toggle="tab" href="#tab-address"
+                                            role="tab" aria-controls="tab-orders" aria-selected="false">Address</a>
+                                    </li>
+
+                                    
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="tab-account-link" data-toggle="tab" href="#tab-account"
+                                            role="tab" aria-controls="tab-account" aria-selected="false">Account
+                                            Details</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/logout">Sign Out</a>
+                                    </li>
+                                </ul>
+                            </aside><!-- End .col-lg-3 -->
+
+                            <div class="col-md-8 col-lg-9">
+                                <div class="tab-content">
+
+                                    <div class="tab-pane fade show active" id="tab-dashboard" role="tabpanel" aria-labelledby="tab-dashboard-link">
+								    	<p>Hello <span class="font-weight-normal text-dark">{{userdetails.username}}</span>  
+								    	<br>
+								    	From your account dashboard you can view your <a href="#tab-orders" class="tab-trigger-link link-underline">recent orders</a>, manage your <a href="#tab-address" class="tab-trigger-link">shipping and billing addresses</a>, and <a href="#tab-account" class="tab-trigger-link">edit your password and account details</a>.</p>
+								    </div><!-- .End .tab-pane -->
+
+                                    <div class="tab-pane fade" id="tab-orders" role="tabpanel"
+                                        aria-labelledby="tab-orders-link">
+                                        <p>You can check your order below</p>
+                                        <a href="/orderlist" class="btn btn-outline-primary-2"><span>GO to Orders</span><i
+                                                class="icon-long-arrow-right"></i></a>
+                                    </div><!-- .End .tab-pane -->
+
+
+                                    <div  class="tab-pane fade" id="tab-wallet" role="tabpanel"
+                                        aria-labelledby="tab-orders-link">
+
+                                        <p> </p>
+                                        
+                                        <h3 style="opacity:0.7;">Wallet Balance : {{userdetails.Wallet}}</h3>
+                                        
+                                    </div><!-- .End .tab-pane -->
+
+
+
+                                    <div class="tab-pane fade" id="tab-downloads" role="tabpanel"
+                                        aria-labelledby="tab-downloads-link">
+                                        <p>No downloads available yet.</p>
+                                        <a href="category.html" class="btn btn-outline-primary-2"><span>GO SHOP</span><i
+                                                class="icon-long-arrow-right"></i></a>
+                                    </div><!-- .End .tab-pane -->
+
+                                    <div class="tab-pane fade" id="tab-address" role="tabpanel"
+                                        aria-labelledby="tab-address-link">
+                                        
+
+
+                                        {{#if userAddress}}
+                                        <p>The following addresses will be used on the checkout page by default.</p>
+
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="card card-dashboard shadow p-3 mb-5 bg-white rounded">
+                                                    <div class="card-body">
+                                                        <h3 class="card-title">Shipping Address</h3>
+                                                        <!-- End .card-title -->
+
+                                                        <p>{{userAddress.name}}<br>
+                                                            {{userAddress.address}}<br>
+                                                            {{userAddress.pincode}}<br>
+                                                            {{userAddress.email}}<br>
+                                                           {{userAddress.mobile}}<br>
+                                                            
+                                                        </p>
+                                                    </div><!-- End .card-body -->
+                                                </div><!-- End .card-dashboard -->
+                                            </div><!-- End .col-lg-6 -->
+
+                                            
+                                        </div><!-- End .row -->
+
+                                        {{else}}
+
+
+                                        <div class="tab-pane fade show active" id="tab-dashboard" role="tabpanel" aria-labelledby="tab-dashboard-link">
+								    	<p>Hello <span class="font-weight-normal text-dark">{{userdetails.username}}</span>  
+								    	<br>
+								    	You need to purchase something <a href="#tab-address" class="tab-trigger-link">shipping or billing addresses </a> <a href="/" class="tab-trigger-link"> Go to Shop</a>.</p>
+								    </div>
+
+
+
+                                        {{/if}}
+                                    </div><!-- .End .tab-pane -->
+
+                                    <div class="tab-pane fade" id="tab-account" role="tabpanel"
+                                        aria-labelledby="tab-account-link">
+
+
+                                        <div class="col-lg-12">
+                                            <div class="card card-dashboard shadow p-3 mb-5 bg-white rounded">
+                                                <div class="card-body">
+                                                    <h3 class="card-title">{{userdetails.username}}</h3>
+                                                    <!-- End .card-title -->
+
+                                                    <p>
+                                                        {{userdetails.email}}<br>
+                                                        {{userdetails.phone}}<br>
+                                                        <a data-toggle="collapse" href="#collapseExample" role="button"
+                                                            aria-expanded="false" aria-controls="collapseExample">
+                                                            Edit <i class="icon-edit"></i>
+                                                        </a>
+                                                    <div class="collapse" id="collapseExample">
+                                                        <div class="card card-body">
+                                                            <form action="/edituser" method="post" id="form">
+
+                                                                <label>Name </label>
+                                                                <input type="text" value="{{userdetails.username}}"
+                                                                    name="username" class="form-control"
+                                                                    onkeyup="validName()" id="name">
+                                                                <span id="names" class="text-danger"></span>
+
+                                                                <label>Email address</label>
+                                                                <input type="email" value="{{userdetails.email}}"
+                                                                    name="email" class="form-control"
+                                                                    onkeyup="validEmail()" id="email">
+                                                                <span id="emails" class="text-danger"></span>
+
+                                                                <label>Mobile</label>
+                                                                <input type="text" value="{{userdetails.phone}}"
+                                                                    name="phone" class="form-control"
+                                                                    onkeyup="validPhone()" id="phone">
+                                                                <span id="phones" class="text-danger"></span>
+
+                                                                <label>Current password</label>
+                                                                <input type="password" class="form-control"
+                                                                    name="password" onkeyup="validPassowrd()"
+                                                                    id="password">
+                                                                <span id="passwords" class="text-danger"></span><br>
+
+                                                                <label>New password</label>
+                                                                <input type="password" id="newpassword"
+                                                                    name="newpassword" class="form-control"
+                                                                    onkeyup="newPassword()">
+                                                                <span id="newpasswords" class="text-danger"></span><br>
+
+                                                                <input type="boolean" class="form-control" name="status"
+                                                                    value='true' hidden>
+
+                                                                <label>Confirm new password</label>
+                                                                <input type="password" id="confirmpassword"
+                                                                    class="form-control" name="confirmpassword"
+                                                                    onkeyup="Confirmpassword()">
+                                                                <span id="confirmpasswords"
+                                                                    class="text-danger mb-3"></span><br>
+
+                                                                <button type="submit" class="btn btn-outline-primary-2"
+                                                                    onclick="return validation()">
+                                                                    <span>SAVE CHANGES</span>
+                                                                    <i class="icon-long-arrow-right"></i>
+                                                                </button>
+                                                            </form>
+
+                                                        </div>
+                                                    </div>
+                                                    </p>
+                                                </div><!-- End .card-body -->
+                                            </div><!-- End .card-dashboard -->
+                                        </div><!-- End .col-lg-6 -->
+                                    </div><!-- .End .tab-pane -->
+                                </div>
+                            </div><!-- End .col-lg-9 -->
+                        </div><!-- End .row -->
+                    </div><!-- End .container -->
+                </div><!-- End .dashboard -->
+            </div><!-- End .page-content -->
+        </main><!-- End .main -->
+
+
+        <footer class="bg3 p-t-75 p-b-32">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-lg-3 p-b-50">
+                        <h4 class="stext-301 cl0 p-b-30">
+                            Categories
+                        </h4>
+
+                        <ul>
+                            <li class="p-b-10">
+                                <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+                                    Women
+                                </a>
+                            </li>
+
+                            <li class="p-b-10">
+                                <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+                                    Men
+                                </a>
+                            </li>
+
+                            <li class="p-b-10">
+                                <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+                                    Shoes
+                                </a>
+                            </li>
+
+                            <li class="p-b-10">
+                                <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+                                    Watches
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-3 p-b-50">
+                        <h4 class="stext-301 cl0 p-b-30">
+                            Help
+                        </h4>
+
+                        <ul>
+                            <li class="p-b-10">
+                                <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+                                    Track Order
+                                </a>
+                            </li>
+
+                            <li class="p-b-10">
+                                <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+                                    Returns
+                                </a>
+                            </li>
+
+                            <li class="p-b-10">
+                                <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+                                    Shipping
+                                </a>
+                            </li>
+
+                            <li class="p-b-10">
+                                <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+                                    FAQs
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-3 p-b-50">
+                        <h4 class="stext-301 cl0 p-b-30">
+                            GET IN TOUCH
+                        </h4>
+
+                        <p class="stext-107 cl7 size-201">
+                            Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call
+                            us on (+1) 96 716 6879
+                        </p>
+
+                        <div class="p-t-27">
+                            <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+
+                            <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                                <i class="fa fa-instagram"></i>
+                            </a>
+
+                            <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                                <i class="fa fa-pinterest-p"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-3 p-b-50">
+                        <h4 class="stext-301 cl0 p-b-30">
+                            Newsletter
+                        </h4>
+
+                        <form>
+                            <div class="wrap-input1 w-full p-b-4">
+                                <input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email"
+                                    placeholder="email@example.com">
+                                <div class="focus-input1 trans-04"></div>
+                            </div>
+
+                            <div class="p-t-18">
+                                <button class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">
+                                    Subscribe
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="p-t-40">
+                    <div class="flex-c-m flex-w p-b-18">
+                        <a href="#" class="m-all-1">
+                            <img src="images/icons/icon-pay-01.png" alt="ICON-PAY">
+                        </a>
+
+                        <a href="#" class="m-all-1">
+                            <img src="images/icons/icon-pay-02.png" alt="ICON-PAY">
+                        </a>
+
+                        <a href="#" class="m-all-1">
+                            <img src="images/icons/icon-pay-03.png" alt="ICON-PAY">
+                        </a>
+
+                        <a href="#" class="m-all-1">
+                            <img src="images/icons/icon-pay-04.png" alt="ICON-PAY">
+                        </a>
+
+                        <a href="#" class="m-all-1">
+                            <img src="images/icons/icon-pay-05.png" alt="ICON-PAY">
+                        </a>
+                    </div>
+
+                    <p class="stext-107 cl6 txt-center">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;
+                        <script>document.write(new Date().getFullYear());</script> All rights reserved |Made with <i
+                            class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com"
+                            target="_blank">Colorlib</a> &amp; distributed by <a href="https://themewagon.com"
+                            target="_blank">ThemeWagon</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div><!-- .End .tab-pane -->
+    </div><!-- End .tab-content -->
+    </div><!-- End .form-tab -->
+    </div><!-- End .form-box -->
+    </div><!-- End .modal-body -->
+    </div><!-- End .modal-content -->
+    </div><!-- End .modal-dialog -->
+    </div><!-- End .modal -->
+
+    <!-- Plugins JS File -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/jquery.hoverIntent.min.js"></script>
+    <script src="assets/js/jquery.waypoints.min.js"></script>
+    <script src="assets/js/superfish.min.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <!-- Main JS File -->
+    <script src="assets/js/main.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        $("#form").submit((e) => {
+            e.preventDefault()
+            $.ajax({
+                url: '/edituser',
+                method: 'post',
+                data: $('#form').serialize(),
+                success: (response) => {
+                    console.log(response)
+                    if (response.status) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Save Changes successfully',
+                            showConfirmButton: true,
+                        }).then((response)=>{
+                            if(response.isConfirmed){
+                                location.href='/userprofile'
+                            }
+                        })
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Wrong Password!',
+                            text: 'Enter Your correct Password!',
+                        })
+                    }
+                }
+            })
+        })
+    </script>
+
+
+    <script>
+
+
+        // validation
+
+        var Name = document.getElementById('names')
+        var Email = document.getElementById('emails')
+        var Password = document.getElementById('passwords')
+        var Phone = document.getElementById('phones')
+        var newpass = document.getElementById('newpasswords')
+        var confirmpass = document.getElementById('confirmpasswords')
+
+        function validEmail() {
+            const email = document.getElementById('email').value
+            if (email == "") {
+                Email.innerHTML = "enter your email address"
+                return false
+            }
+            if (!email.match(/^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/)) {
+                Email.innerHTML = 'enter a proper email adress'
+                return false
+            }
+            Email.innerHTML = null
+            return true
+        }
+        function validName() {
+
+            const name = document.getElementById('name').value;
+            if (name == "") {
+                Name.innerHTML = 'Enter your Name'
+                return false
+            }
+            if (!name.match(/^[a-zA-Z\s-, ]+$/)) {
+                Name.innerHTML = 'Numbers and symbols are not allowed'
+                return false
+            }
+            if (name.length < 3) {
+                Name.innerHTML = "Name must be three characters long"
+                return false
+            }
+            Name.innerHTML = null
+            return true
+        }
+
+        function validPhone() {
+            const phone = document.getElementById('phone').value
+            if (phone == "") {
+                Phone.innerHTML = "enter a phone number"
+                return false
+            }
+            if (!phone.match(/^\d{10}$/)) {
+                Phone.innerHTML = "phone number should be  10 digits "
+                return false
+            }
+            Phone.innerHTML = null
+            return true
+        }
+        function validPassowrd() {
+            const password = document.getElementById('password').value
+            if (password == "") {
+                Password.innerHTML = "enter password"
+                return false
+            }
+            if (password.length < 6) {
+                Password.innerHTML = "password should be more than six characters"
+                return false
+            }
+            Password.innerHTML = null
+            return true
+        }
+
+        function newPassword() {
+            const newpassword = document.getElementById('newpassword').value
+            if (newpassword == "") {
+                newpass.innerHTML = "enter password"
+                return false
+            }
+
+            if (newpassword.length < 6) {
+                newpass.innerHTML = "password should be more than six characters"
+                return false
+            }
+
+            newpass.innerHTML = null
+            return true
+        }
+
+        function Confirmpassword() {
+
+            const confirmpassword = document.getElementById('confirmpassword').value
+            const newpassword = document.getElementById('newpassword').value
+
+            if (confirmpassword == "") {
+                confirmpass.innerHTML = "enter password"
+                return false
+            }
+            // if (confirmpassword.length < 6) {
+            //  confirmpass.innerHTML = "password should be more than six characters"
+            //  return false
+            // }
+
+            if (confirmpassword !== newpassword) {
+                confirmpass.innerHTML = "enter the same as above password"
+                return false
+            }
+
+            confirmpass.innerHTML = null
+            return true
+
+
+        }
+        function validation() {
+            if (!validEmail() && !validName() && !validPassowrd() && !validPhone() && !newPassword() && !Confirmpassword()) {
+                return false
+            } else if (!validEmail() || !validName() || !validPassowrd() || !validPhone() || !newPassword() || !Confirmpassword()) {
+                return false
+            } else { return true }
+        }
+    </script>
+
+
+</body>
+
+
+<!-- molla/dashboard.html  22 Nov 2019 10:03:13 GMT -->
+
+</html>

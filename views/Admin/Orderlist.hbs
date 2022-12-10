@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  {{>adminheaderlinks}}
+
+</head>
+
+<body style="background-color:rgb(38, 50, 53);">
+
+  <!-- Start wrapper-->
+  <div id="wrapper">
+
+    <!--Start sidebar-wrapper-->
+    {{>adminsidebar}}
+    <!--End sidebar-wrapper-->
+
+    <!--Start topbar header-->
+    {{>adminheader}}
+    <!--End topbar header-->
+
+    <div class="clearfix"></div>
+
+    <div class="content-wrapper">
+      <div class="container-fluid">
+
+        <!--Start Dashboard Content-->
+
+        <div class="row">
+          <div class="col-12 col-lg-12">
+            <div class="card">
+              <div class="card-header">Order List
+                {{!-- <div class="card-action">
+                  <div class="dropdown">
+                    <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
+                      <i class="icon-options"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                      <a class="dropdown-item" href="javascript:void();">Action</a>
+                      <a class="dropdown-item" href="javascript:void();">Another action</a>
+                      <a class="dropdown-item" href="javascript:void();">Something else here</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="javascript:void();">Separated link</a>
+                    </div>
+                  </div>
+                </div> --}}
+              </div>
+              <div class="table-responsive">
+                <table class="table align-items-center table-flush table-borderless">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Cutomer Name</th>
+                      <th>Address</th>
+                      <th>Amount</th>
+                      <th>Payment</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    {{#each Orders}}
+                    <tr>
+                      <td>{{this.index}}</td>
+                      <td>{{this.deliveryDetails.name}}</td>
+                      <td>{{this.deliveryDetails.address}}</td>
+                      <td>₹{{this.totalprice}}</td>
+                      <td>{{this.paymentmethod}}</td>
+
+                      <td>
+                        <a href="/admin/view-products/{{this._id}}" class="btn btn-success"
+                          style="background-color: rgb(20, 72, 34);">View Order</a>
+                      </td>
+                    </tr>
+                    {{/each}}
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--End Row-->
+
+        <!--End Dashboard Content-->
+
+        <!--start overlay-->
+        <div class="overlay toggle-menu"></div>
+        <!--end overlay-->
+
+      </div>
+      <!-- End container-fluid-->
+
+    </div>
+    <!--End content-wrapper-->
+    <!--Start Back To Top Button-->
+    <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+    <!--End Back To Top Button-->
+
+    <!--Start footer-->
+    
+    <!--End footer-->
+
+    <!--start color switcher-->
+
+    <!--end color switcher-->
+
+  </div>
+  <!--End wrapper-->
+
+  {{>adminscriptlinks}}
+
+
+
+</body>
+
+</html>
