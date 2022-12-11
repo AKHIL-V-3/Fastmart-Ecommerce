@@ -966,6 +966,33 @@
             })
         }
 
+
+
+
+        function addToWhishlist(proId) {
+			$.ajax({
+				url: '/addtowhishlist/' + proId,
+				method: 'get',
+				success: (response) => {
+					if (response.status) {
+						let count = $('#whishlist-count').html()
+						count = parseInt(count) + 1
+						$('#whishlist-count').html(count)
+
+						Swal.fire({
+							icon: 'success',
+							title: 'Item added to WhishList',
+							showConfirmButton: false,
+							timer: 1000
+						})
+
+					} else{
+						location.href="/login"
+					}
+				}
+			})
+		}
+
     
 
 

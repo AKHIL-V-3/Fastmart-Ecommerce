@@ -116,7 +116,7 @@
 									<img class="icon-heart2 dis-block trans-04 ab-t-l"
 										src="images/icons/icon-heart-02.png" alt="ICON">
 
-									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png"
+									<img class="icon-heart1 dis-block trans-04" src="/images/icons/icon-heart-01.png"
 										alt="ICON">
 
 									<div class="mt-1">
@@ -627,6 +627,41 @@
 				}
 			})
 		}
+
+
+
+		function addToWhishlist(proId) {
+			$.ajax({
+				url: '/addtowhishlist/' + proId,
+				method: 'get',
+				success: (response) => {
+					if (response.status) {
+						let count = $('#whishlist-count').html()
+						count = parseInt(count) + 1
+						$('#whishlist-count').html(count)
+
+						Swal.fire({
+							icon: 'success',
+							title: 'Item added to WhishList',
+							showConfirmButton: false,
+							timer: 1000
+						})
+
+					} else{
+						location.href="/login"
+					}
+				}
+			})
+		}
+
+
+
+
+
+
+
+
+
 	</script>
 
 
