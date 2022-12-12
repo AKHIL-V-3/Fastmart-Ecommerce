@@ -712,7 +712,7 @@
     <!-- Main JS File -->
     <script src="/assets/js/main.js"></script>
     {{!-- <script src="jquery-3.6.0.min.js"></script>  --}}
-    <script src="/cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
     function addToCart(proId){
             $.ajax({
@@ -741,7 +741,7 @@
             })
         }
 
-        function addToWhishlist(proId) {
+       function addToWhishlist(proId){
 			$.ajax({
 				url: '/addtowhishlist/' + proId,
 				method: 'get',
