@@ -19,8 +19,6 @@ verifyLogin = function (req, res, next) {
   }
 }
 
-
-
 module.exports = {
 
   home: async (req, res, next) => {
@@ -81,8 +79,6 @@ let productimages= await admin.getProductimages()
          }
        })
 
-       
-
         res.render('User/userHome', { user, category, product, cartCount, cartItems, listCount, whishlist, productimages, Banners });
       })
     })
@@ -138,8 +134,6 @@ let productimages= await admin.getProductimages()
       listCount=0
     }
 
-
-
     admin.getProducts().then((product) => {
 
       admin.getCategory().then((category)=>{
@@ -170,8 +164,7 @@ let productimages= await admin.getProductimages()
         res.render('User/products', { product, users, cartItems, whishlist, listCount , cartCount,category})
 
       })
-
-      
+  
     })
   },
 
@@ -238,11 +231,6 @@ let productimages= await admin.getProductimages()
            }
          })
 
-
-         console.log(productdetail);
-         console.log('))))))))))))))))))))))))))');
-
-
         if(productdetail.stocks === 0){
 
           productdetail.outofstock=true
@@ -252,8 +240,6 @@ let productimages= await admin.getProductimages()
 
         console.log(productdetail);
 
-
-
         res.render('User/product-details', { products, productdetail, user: req.session.user, cartCount ,whishlist ,listCount, cartItems })
       })
     })
@@ -261,6 +247,7 @@ let productimages= await admin.getProductimages()
 
   logout: (req, res) => {
     req.session.user = null
+    req.session.redirect=null
     req.session.loggedIn = false
     res.clearCookie('user')
     res.clearCookie('loggedIn')
@@ -282,14 +269,10 @@ let productimages= await admin.getProductimages()
 
      let  cartItems = await user.getCartProducts(req.session.user._id)
 
-     console.log(cartItems);
-     console.log('0000000000000000000000000000000');
-
        if(cartItems.length === 0){
         cartItems=null
        }
     
-   
     let totalValue = await user.getTotalAmount(req.session.user._id, coupondiscount)
     let cartCount = await user.getCartCount(req.session.user._id)
     let listCount = null
@@ -306,15 +289,10 @@ let productimages= await admin.getProductimages()
   addToCart: async (req, res) => {
     req.session.proId=req.params.id
     proId=req.params.id
-
-    let productqnt=0
-   
+    let productqnt=0 
     if(req.session.user){
-
        productqnt=await user.getCartProductQuantity(req.session.user._id,proId)
-
-    }
-   
+    } 
    const product =await admin.getOneProduct(proId)
    console.log(productqnt);
    let quantity=null
@@ -323,14 +301,10 @@ let productimages= await admin.getProductimages()
    }else{
       quantity=productqnt.quantity
    }
-     
-
-   let totalValue=0
-  
+   let totalValue=0 
      if(product.stocks === 0 || quantity === product.stocks){
       res.json({stock:true})
      }else{
-
       if(req.session.user){
          totalValue = await user.getTotalAmount(req.session.user._id)
 
@@ -430,9 +404,7 @@ let productimages= await admin.getProductimages()
 
 
     Orders.forEach(element => {
-      console.log(element.products); 
-
-      console.log('============================');
+  
     });
 
 
@@ -766,7 +738,7 @@ searchproducts:async(req,res)=>{
 
   loginPost: (req, res) => {
 
-    let proId=req.session.productdetailId
+    
 
     user.doLogin(req.body).then((response) => {
       if (response.status) {
@@ -780,6 +752,7 @@ searchproducts:async(req,res)=>{
           req.session.loggedIn = true
           res.redirect('/productdetails/'+ proId)
           req.session.redirect=null
+          
 
         }else{
 
