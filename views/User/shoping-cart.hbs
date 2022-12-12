@@ -16,52 +16,54 @@
 	<style>
 		@import url(http://fonts.googleapis.com/css?family=Calibri:400,300,700);
 
-body {
-    background-color: #eee;
-    font-family: 'Calibri', sans-serif !important;
-}
+		body {
+			background-color: #eee;
+			font-family: 'Calibri', sans-serif !important;
+		}
 
-.mt-100{
-   margin-top:100px;
+		.mt-100 {
+			margin-top: 100px;
 
-}
-
-
-.card {
-    margin-bottom: 30px;
-    border: 0;
-    -webkit-transition: all .3s ease;
-    transition: all .3s ease;
-    letter-spacing: .5px;
-    border-radius: 8px;
-    -webkit-box-shadow: 1px 5px 24px 0 rgba(68,102,242,.05);
-    box-shadow: 1px 5px 24px 0 rgba(68,102,242,.05);
-}
-
-.card .card-header {
-    background-color: #fff;
-    border-bottom: none;
-    padding: 24px;
-    border-bottom: 1px solid #f6f7fb;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-}
-
-.card-header:first-child {
-    border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
-}
+		}
 
 
+		.card {
+			margin-bottom: 30px;
+			border: 0;
+			-webkit-transition: all .3s ease;
+			transition: all .3s ease;
+			letter-spacing: .5px;
+			border-radius: 8px;
+			-webkit-box-shadow: 1px 5px 24px 0 rgba(68, 102, 242, .05);
+			box-shadow: 1px 5px 24px 0 rgba(68, 102, 242, .05);
+		}
 
-.card .card-body {
-    padding: 30px;
-    background-color: transparent;
-}
+		.card .card-header {
+			background-color: #fff;
+			border-bottom: none;
+			padding: 24px;
+			border-bottom: 1px solid #f6f7fb;
+			border-top-left-radius: 8px;
+			border-top-right-radius: 8px;
+		}
 
-.btn-primary, .btn-primary.disabled, .btn-primary:disabled {
-    background-color: #4466f2!important;
-    border-color: #4466f2!important;
-}
+		.card-header:first-child {
+			border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+		}
+
+
+
+		.card .card-body {
+			padding: 30px;
+			background-color: transparent;
+		}
+
+		.btn-primary,
+		.btn-primary.disabled,
+		.btn-primary:disabled {
+			background-color: #4466f2 !important;
+			border-color: #4466f2 !important;
+		}
 	</style>
 </head>
 
@@ -81,8 +83,8 @@ body {
 			<span class="stext-109 cl4">
 				Shoping Cart
 			</span>
-		</div>
-	</div> --}}
+		</div> --}}
+	</div>
 
 	{{#if cartItems}}
 	<!-- Shoping Cart -->
@@ -131,24 +133,6 @@ body {
 										</div>
 
 
-
-
-
-										{{!-- <div
-											class="wrap-num-product d-flex justify-content-between m-l-auto m-r-0">
-											<button class="btn  flex-c-m"
-												onclick="changeQuantity('{{this._id}}','{{this.products._id}}','{{../user._id}}',-1)">
-												<i class="fs-16 zmdi zmdi-minus"></i>
-											</button>
-
-											<span class="mtext-104 cl3 txt-center num-product py-3"
-												id="{{this.products._id}}">{{this.quantity}}</span>
-
-											<button class="btn trans-04 flex-c-m"
-												onclick="changeQuantity('{{this._id}}','{{this.products._id}}','{{../user._id}}',1)">
-												<i class="fs-16 zmdi zmdi-plus"></i>
-											</button>
-										</div> --}}
 									</td>
 									{{!-- <td class="column-6">
 										<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m"
@@ -230,46 +214,13 @@ body {
 
 							<div class="size-209 p-r-18 p-r-0-sm w-full-ssm">
 								<p class="stext-111 cl6 p-t-2">
-									There are no shipping methods available. Please double check your address, or
+									There is no shipping Charge. Please double check your address, or
 									contact us if you need any help.
 								</p>
 
-								{{!-- <div class="p-t-15">
-									<span class="stext-112 cl8">
-										Calculate Shipping
-									</span>
 
-									<div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-										<select class="js-select2" name="time">
-											<option>Select a country...</option>
-											<option>USA</option>
-											<option>UK</option>
-										</select>
-										<div class="dropDownSelect2"></div>
-									</div>
-
-									<div class="bor8 bg0 m-b-12">
-										<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="state"
-											placeholder="State /  country">
-									</div>
-
-									<div class="bor8 bg0 m-b-22">
-										<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="postcode"
-											placeholder="Postcode / Zip">
-									</div>
-
-									<div class="flex-w">
-										<div
-											class="flex-c-m stext-101 cl2 size-115 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer">
-											Update Totals
-										</div>
-									</div>
-
-								</div> --}}
 							</div>
 						</div>
-
-
 
 						<div class="flex-w flex-t p-t-27 p-b-33">
 							<div class="size-208">
@@ -297,33 +248,48 @@ body {
 	</form>
 
 	{{else}}
+
+	<style>
+		@media only screen and (max-width: 600px) {
+			#cart_image {
+				margin-left: 70px;
+			}
+		}
+
+		@media only screen and (min-width: 600px) {
+			#cart_image {
+				margin-left: 630px;
+			}
+		}
+	</style>
+
 	<div class="container-fluid  mt-100">
-				 <div class="row">
-				 
-					<div class="col-md-12">
-					
-							<div class="card">
-						<div class="card-header">
-						
+		<div class="row">
+
+			<div class="col-md-12">
+
+				<div class="card">
+
+					<div class="card-body cart">
+						<div class="col-sm-12 empty-cart-cls text-center">
+							<img src="https://i.imgur.com/dCdflKN.png" width="130" height="130"
+								class="img-fluid mb-4 mr-3" id="cart_image" style="">
+							<h3><strong>Your Cart is Empty</strong></h3>
+							<h4>Add something to make me happy :)</h4>
+							<a href="/" class="btn btn-primary cart-btn-transform m-3" data-abc="true">continue
+								shopping</a>
+
+
 						</div>
-						<div class="card-body cart">
-								<div class="col-sm-12 empty-cart-cls text-center">
-									<img src="https://i.imgur.com/dCdflKN.png" width="130" height="130"  class="img-fluid mb-4 mr-3" style="margin-left: 630px;">
-									<h3><strong>Your Cart is Empty</strong></h3>
-									<h4>Add something to make me happy :)</h4>
-									<a href="/" class="btn btn-primary cart-btn-transform m-3" data-abc="true">continue shopping</a>
-									
-								
-								</div>
-						</div>
-				</div>
-						
-					
 					</div>
-				 
-				 </div>
-				
 				</div>
+
+
+			</div>
+
+		</div>
+
+	</div>
 
 	{{/if}}
 

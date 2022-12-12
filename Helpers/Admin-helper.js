@@ -5,6 +5,7 @@ var Promise = require('promise')
 var collection = require('../Config/Collection')
 const { response } = require('express')
 const { reject, resolve } = require('promise')
+const { map } = require('../app')
 var ObjectId = require('mongodb').ObjectId
 
 
@@ -46,12 +47,20 @@ module.exports = {
             })
       },
 
-      addProducts: (product) => {
+      addProducts: async (product) => {
             product.price = parseInt(product.price)
-            product.Price = parseInt(product.Price)
             product.stocks = parseInt(product.stocks)
             product.offerprice = parseInt(product.price)
             product.Offerpercentage = 0
+
+            let category = await db.get().collection(collection.Category_collection).findOne({category:product.category});
+
+            product.categoryOfferpercentage = category.categoryOffer;
+
+            if(category.categoryOffer !=0){
+                  let offer = product.price - (product.price * category.categoryOffer)/100;
+                  product.price = Math.round(offer);
+            }
 
             return new Promise(async (resolve, reject) => {
                   let productdetail = await db.get().collection(collection.Product_Collection).insertOne(product)
@@ -564,65 +573,45 @@ module.exports = {
       productOffer: async (offerprice) => {
 
             offerprice.productoffer = parseInt(offerprice.productoffer)
-            const Offerpercentage = offerprice.productoffer
-            const proId = offerprice.proId
+            let  offerPerc = offerprice.productoffer
+            let proId = offerprice.proId
 
             return new Promise(async (resolve, reject) => {
 
                   let product = await db.get().collection(collection.Product_Collection).findOne({ _id: ObjectId(proId) })
 
-
                   let productprice = product.offerprice
 
-
-                  let offerprices = (productprice * Offerpercentage) / 100
-
+                  let offerprices = (productprice * offerPerc) / 100
+                
+                  if(product.categoryOfferpercentage > offerPerc){
+                        offerprices = (productprice * product.categoryOfferpercentage) / 100
+                        console.log('Less::::::::::::::::::::::::',offerprices);
+                  }
 
                   console.log(offerprices);
 
+                  let offer = productprice - offerprices;  
+ 
 
-
-
-                  db.get().collection(collection.Product_Collection).updateOne({ _id: ObjectId(proId) },
-
-                        {
-                              $inc: { offerprice: -offerprices }
-                        },
-
-                  )
-
-                  let products = await db.get().collection(collection.Product_Collection).findOne({ _id: ObjectId(proId) })
-
-                  let offer = products.offerprice
-
-
-
-
+                 
+                  offer = Math.round(offer)
 
                   db.get().collection(collection.Product_Collection).updateOne({ _id: ObjectId(proId) },
 
                         {
                               $set: { price: offer }
                         },
-
-                  )
-
-                  db.get().collection(collection.Product_Collection).updateOne({ _id: ObjectId(proId) },
-                        {
-                              $set: { offerprice: productprice }
-                        }
                   )
 
 
                   db.get().collection(collection.Product_Collection).updateOne({ _id: ObjectId(proId) },
                         {
-                              $set: { Offerpercentage: Offerpercentage }
+                              $set: { Offerpercentage: offerPerc }
                         }
                   )
-
 
                   resolve()
-
 
             })
       },
@@ -659,20 +648,17 @@ module.exports = {
 
                   categoryproducts.forEach(async i => {
 
-                        let productprice = i.Offerprice
+                        console.log(i);
 
-                        db.get().collection(collection.Product_Collection).updateOne({ _id: ObjectId(i.proId) },
-                              {
-                                    $inc: { offerprice: -(i.Offerprice * i.categoryOffer) / 100 }
-                              }
-                        )
+                        let productprice = i.Offerprice   
 
+                        let offer = productprice - (productprice * i.categoryOffer) / 100
 
-                        let products = await db.get().collection(collection.Product_Collection).findOne({ _id: ObjectId(i.proId) })
+                        if(i.categoryOfferpercentage < i.Offerpercentage ){
+                              offer = productprice - (productprice * i.Offerpercentage) / 100
+                        }
 
-
-                        let offer = products.offerprice
-
+                            offer = Math.round(offer)
 
                         db.get().collection(collection.Product_Collection).updateOne({ _id: ObjectId(i.proId) },
 
@@ -681,16 +667,6 @@ module.exports = {
                               },
 
                         )
-
-
-                        db.get().collection(collection.Product_Collection).updateOne({ _id: ObjectId(i.proId) },
-
-                              {
-                                    $set: { offerprice: productprice }
-                              }
-                        )
-
-
 
                         db.get().collection(collection.Product_Collection).updateOne({ _id: ObjectId(i.proId) },
                               {

@@ -583,11 +583,13 @@
 									<div class="mt-1">
 										{{#if offerErr}}
 										<span class="text-success">{{this.Offerpercentage}}%Off</span>
-										{{/if}}
-
-										{{#if categoryoffer}}
+										{{else if categoryoffer}}
 										<span class="text-success">{{this.categoryOfferpercentage}}%Off</span>
 										{{/if}}
+
+										{{!-- {{#if categoryoffer}}
+										
+										{{/if}} --}}
 
 									</div>
 

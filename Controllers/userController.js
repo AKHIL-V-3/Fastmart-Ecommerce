@@ -67,13 +67,16 @@ let productimages= await admin.getProductimages()
 
 
        product.forEach((i)=>{
-         if(i.Offerpercentage !== 0 && i.Offerpercentage > i.categoryOfferpercentage){
-             i.offerErr=true
-             i.categoryoffer=false
-         }else if(i.Offerpercentage !== 0 && i.Offerpercentage < i.categoryOfferpercentage){
+
+        if(i.Offerpercentage !=0 || i.categoryOfferpercentage != 0){
+          if(i.Offerpercentage > i.categoryOfferpercentage){
+            i.offerErr = true;
+            i.categoryOffer = false;
+          }else{
             i.categoryoffer=true
             i.offerErr=false
-         }else{
+          }
+        }else{
           i.offerErr=false
           i.categoryoffer=false
          }
@@ -200,11 +203,31 @@ let productimages= await admin.getProductimages()
       req.session.paramsId = req.params.id
 
 
-      if(productdetail.Offerpercentage!==0){
-        productdetail.offerErr=true
+      // if(productdetail.Offerpercentage!==0){
+      //   productdetail.offerErr=true
+      // }else{
+      //   productdetail.offerErr=false
+      // }
+
+
+
+      if(productdetail.Offerpercentage !=0 || productdetail.categoryOfferpercentage != 0){
+        if(productdetail.Offerpercentage > productdetail.categoryOfferpercentage){
+          productdetail.offerErr = true;
+          productdetail.categoryOffer = false;
+        }else{
+          productdetail.categoryoffer=true
+          productdetail.offerErr=false
+        }
       }else{
         productdetail.offerErr=false
-      }
+        productdetail.categoryoffer=false
+       }
+
+
+
+
+
 
       admin.getlimitedProducts().then((products) => {
 
@@ -216,20 +239,26 @@ let productimages= await admin.getProductimages()
             i.stockErr=false
            }
          })
-    
-    
+
+
          products.forEach((i)=>{
-           if(i.Offerpercentage !== 0 && i.Offerpercentage > i.categoryOfferpercentage){
-               i.offerErr=true
-               i.categoryoffer=false
-           }else if(i.Offerpercentage !== 0 && i.Offerpercentage < i.categoryOfferpercentage){
+
+          if(i.Offerpercentage !=0 || i.categoryOfferpercentage != 0){
+            if(i.Offerpercentage > i.categoryOfferpercentage){
+              i.offerErr = true;
+              i.categoryOffer = false;
+            }else{
               i.categoryoffer=true
               i.offerErr=false
-           }else{
+            }
+          }else{
             i.offerErr=false
             i.categoryoffer=false
            }
          })
+    
+    
+         
 
         if(productdetail.stocks === 0){
 

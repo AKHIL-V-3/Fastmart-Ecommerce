@@ -968,9 +968,8 @@ module.exports = {
                   category:1,
                   categoryOffer:1,
                   proId:"$Category._id",
-                  price:"$Category.price",
                   Offerprice:"$Category.offerprice",
-                  
+                  Offerpercentage:"$Category.Offerpercentage"  
 
                }
             }

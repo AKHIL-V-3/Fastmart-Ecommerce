@@ -247,7 +247,12 @@ module.exports = {
     },
 
     Offer: (req, res) => {
-        admin.getProducts().then((products) => {
+        admin.getProducts().then((product) => {
+
+            const products = product.filter((i, index) => {
+                i.index = index + 1
+                return i
+            })
 
             res.render('Admin/offermanagement', { products })
 
@@ -256,7 +261,12 @@ module.exports = {
     },
 
     categoryoffer: (req, res) => {
-        admin.getCategory().then((category) => {
+        admin.getCategory().then((categorys) => {
+
+            const category = categorys.filter((i, index) => {
+                i.index = index + 1
+                return i
+            })
             res.render('Admin/categoryoffer', { category })
 
         })
@@ -348,9 +358,8 @@ module.exports = {
     },
 
     productofferPost: (req, res) => {
+
         admin.productOffer(req.body).then(() => {
-
-
             res.redirect('/admin/offer')
 
 

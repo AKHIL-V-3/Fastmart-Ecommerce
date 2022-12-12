@@ -82,9 +82,11 @@
                                     </div><!-- End .product-price -->
                                    </div>
 
-                                   {{#if productdetail.offerErr}}
-                                       <h6 class="text-success">{{productdetail.Offerpercentage}} %Off</h6>
-									{{/if}}
+                                     {{#if productdetail.offerErr}}
+										<h6 class="text-success">{{productdetail.Offerpercentage}}%Off</h6>
+										{{else if productdetail.categoryoffer}}
+										<h6 class="text-success">{{productdetail.categoryOfferpercentage}}%Off</h6>
+										{{/if}}
 
 
                                     <div class="product-content">
@@ -97,28 +99,7 @@
                                     </div>
                                     {{/if}}
 
-                                    {{!-- <div class="details-filter-row details-row-size">
-                                        <label>Color:</label>
-
-                                        <div class="product-nav product-nav-dots">
-                                            <a href="#" class="active" style="background: #538690;"><span class="sr-only">Color name</span></a>
-                                            <a href="#" style="background: #333333;"><span class="sr-only">Color name</span></a>
-                                        </div><!-- End .product-nav -->
-                                    </div><!-- End .details-filter-row --> --}}
-
-                                    
-                                       
-                                        {{!-- <div class="select-custom">
-                                            <select name="size" id="size" class="form-control">
-                                                
-                                                <option value="s">Small</option>
-                                                <option value="m">Medium</option>
-                                                <option value="l">Large</option>
-                                                <option value="xl">Extra Large</option>
-                                            </select>
-                                        </div><!-- End .select-custom --> --}}
-
-                                        {{!-- <a href="#" class="size-guide"><i class="icon-th-list"></i>size guide</a> --}}
+                                   
                                     <!-- End .details-filter-row -->
 
                                     <div class="product-details-action">
@@ -133,7 +114,7 @@
                                         </div><!-- End .details-action-col -->
 
                                         <div class="details-action-wrapper">
-                                            <a href="/whishlist" class="btn-product btn-wishlist" title="Wishlist"><span>Add to Wishlist</span></a>
+                                            <button onclick="addToWhishlist('{{productdetail._id}}')" class="btn-product btn-wishlist" title="Wishlist"><span>Add to Wishlist</span></button>
                                             {{!-- <a href="#" class="btn-product btn-compare" title="Compare"><span>Add to Compare</span></a> --}}
                                         </div><!-- End .details-action-wrapper -->
                                     </div><!-- End .product-details-action -->
@@ -233,22 +214,16 @@
 									{{#if categoryoffer}}
 
 									<span class="stext-105 cl3 mr-3">
-										<del>₹ {{this.offerprice}}</del>
+										<del>₹{{this.offerprice}}</del>
 									</span>
 
 									{{/if}}
 
-
-									<h5 class="stext-80 cl3 fw-bold">
-										₹ {{this.price}}
-									</h5>
-
-
-
+									<span class="stext-110 cl3 fw-bold">
+										₹{{this.price}}
+									</span>
 								</div>
 							</div>
-
-
 
 							<div class="block2-txt-child2 flex-r p-t-3">
 								<button onclick="addToWhishlist('{{this._id}}')"
@@ -274,7 +249,6 @@
 								</button>
 
 							</div>
-
 
 						</div>
 					</div>
@@ -762,14 +736,10 @@
 
                         location.href="/login"
 
-
                      }
                 }
             })
         }
-
-
-
 
         function addToWhishlist(proId) {
 			$.ajax({
@@ -794,9 +764,6 @@
 				}
 			})
 		}
-
-    
-
 
 </script>
 </body>
